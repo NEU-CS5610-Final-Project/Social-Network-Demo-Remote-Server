@@ -4,7 +4,12 @@ import mongoose from "mongoose";
 import express from 'express'
 import cors from "cors";
 
-import UseRoutes from "./MovieNetwork/Users/routes.js";
+import UserRoutes from "./MovieNetwork/Users/routes.js";
+import FollowRoutes from "./MovieNetwork/Follows/routes.js";
+import LikedRoutes from "./MovieNetwork/Liked/routes.js";
+import ReviewRoutes from "./MovieNetwork/Reviews/routes.js";
+import MovieVoteRoutes from "./MovieNetwork/MovieVote/routes.js";
+import ReviewVoteRoutes from "./MovieNetwork/ReviewVote/routes.js";
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/movie-network";
 mongoose.connect(CONNECTION_STRING);
@@ -29,6 +34,11 @@ if (process.env.NODE_ENV !== "development") {
 app.use(session(sessionOptions));
 app.use(express.json());
 
-UseRoutes(app);
+UserRoutes(app);
+FollowRoutes(app);
+LikedRoutes(app);
+ReviewRoutes(app);
+MovieVoteRoutes(app);
+ReviewVoteRoutes(app);
 
 app.listen(process.env.PORT || 4000);
