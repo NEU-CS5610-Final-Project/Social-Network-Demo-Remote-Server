@@ -1,0 +1,56 @@
+[
+    {
+        "_id": "1",
+        "username": "test",
+        "email": "test@example.com",
+        "password": "123",
+        "bio": "This is a test user.",
+        "join_date": "2025-08-01",
+        "avatar": "default",
+        "role": "USER",
+        "privacy": {
+            "email": 1,
+            "bio": 0,
+            "join_date": 0,
+            "liked": 1,
+            "following": 1,
+            "review": 1
+        }
+    },
+    {
+        "_id": "2",
+        "username": "test2",
+        "email": "test2@example.com",
+        "password": "123",
+        "bio": "This is a test2 user.",
+        "join_date": "2025-08-03",
+        "avatar": "default",
+        "role": "USER",
+        "privacy": {
+            "email": 0,
+            "bio": 0,
+            "join_date": 0,
+            "liked": 0,
+            "following": 0,
+            "review": 0
+        }
+    },
+    {
+        "_id": "3",
+        "username": "admin",
+        "email": "admin@example.com",
+        "password": "admin",
+        "bio": "This is an admin user.",
+        "join_date": "2025-08-01",
+        "avatar": "default",
+        "role": "ADMIN",
+        "privacy": {
+            "email": 2,
+            "bio": 2,
+            "join_date": 2,
+            "liked": 2,
+            "following": 2,
+            "review": 2
+        }
+    }
+]

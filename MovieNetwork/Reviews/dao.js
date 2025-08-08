@@ -1,0 +1,24 @@
+import model from "./model.js";
+import reviewVoteModel from "../ReviewVote/model.js";
+import { v4 as uuidv4 } from "uuid";
+
+export const createReview = async (reviewData) => {
+    const newReview = { ...reviewData, _id: uuidv4() };
+    await model.create(newReview);
+    const newReviewVote = { _id: uuidv4(), review_id: newReview._id, count: 0 };
+    await reviewVoteModel.create(newReviewVote);
+    return newReview;
+};
+
+export const deleteReview = async (reviewID) => {
+    await reviewVoteModel.deleteMany({ review_id: reviewID });
+    return model.findByIdAndDelete(reviewID);
+};
+
+export const updateReview = (reviewID, reviewData) => {
+    return model.updateOne({ _id: reviewID }, { $set: reviewData });
+};
+
+export const findReviewsByMovie = (movieID) => {
+    return model.find({ movie_id: movieID });
+};
