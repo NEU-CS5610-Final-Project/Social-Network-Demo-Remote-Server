@@ -44,10 +44,35 @@ export default function TMDBRoutes(app) {
         release_date: movie.release_date,
         title: movie.title
       }));
-  
+
       res.json({ page: data.page, total_pages: data.total_pages, results });
     } catch (e) {
       sendErr(res, e, "TMDB latest movies failed");
+    }
+  });
+
+  //get popular movie
+  app.get("/api/tmdb/popular", async (req, res) => {
+    try {
+      const { page = 1, lang = "en-US" } = req.query;
+      const { data } = await tmdb.get("/movie/popular", {
+        params: { language: lang, page }
+      });
+      const results = data.results.map(movie => ({
+        adult: movie.adult,
+        vote_average: movie.vote_average,
+        vote_count: movie.vote_count,
+        overview: movie.overview,
+        id: movie.id,
+        original_language: movie.original_language,
+        poster_path: movie.poster_path,
+        release_date: movie.release_date,
+        title: movie.title
+      }));
+
+      res.json({ page: data.page, total_pages: data.total_pages, results });
+    } catch (e) {
+      sendErr(res, e, "TMDB popular movies failed");
     }
   });
 
@@ -82,11 +107,11 @@ export default function TMDBRoutes(app) {
       if (!Number.isInteger(idNum) || idNum <= 0) {
         return res.status(400).json({ error: "Invalid movie id" });
       }
-  
+
       const { data } = await tmdb.get(`/movie/${idNum}`, {
         params: { language: lang }
       });
-  
+
       const filtered = {
         adult: data.adult,
         vote_average: data.vote_average,
@@ -99,7 +124,7 @@ export default function TMDBRoutes(app) {
         title: data.title,
         genres: data.genres,
       };
-  
+
       res.json(filtered);
     } catch (e) {
       sendErr(res, e, "TMDB details failed");
