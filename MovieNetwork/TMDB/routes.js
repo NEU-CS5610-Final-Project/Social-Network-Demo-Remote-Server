@@ -52,11 +52,28 @@ export default function TMDBRoutes(app) {
       if (!Number.isInteger(idNum) || idNum <= 0) {
         return res.status(400).json({ error: "Invalid movie id" });
       }
+  
       const { data } = await tmdb.get(`/movie/${idNum}`, {
-        params: { language: lang, append_to_response: "credits,videos,images" }
+        params: { language: lang }
       });
-      res.json(data);
-    } catch (e) { sendErr(res, e, "TMDB details failed"); }
+  
+      const filtered = {
+        adult: data.adult,
+        vote_average: data.vote_average,
+        vote_count: data.vote_count,
+        overview: data.overview,
+        id: data.id,
+        original_language: data.original_language,
+        poster_path: data.poster_path,
+        release_date: data.release_date,
+        title: data.title,
+        genres: data.genres,
+      };
+  
+      res.json(filtered);
+    } catch (e) {
+      sendErr(res, e, "TMDB details failed");
+    }
   });
 
   /** Get poster URL:
