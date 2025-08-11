@@ -94,8 +94,10 @@ export default function UserRoutes(app) {
             fullUser.following = followingList;
             fullUser.liked = likedMovies.map(l => l.movie_id);
             fullUser.reviews = userReviews.map(r => ({
+                _id: r._id,
                 content: r.content,
-                movie_id: r.movie_id
+                movie_id: r.movie_id,
+                update_time: r.update_time
             }));
             res.json(fullUser);
         } else {
@@ -119,8 +121,10 @@ export default function UserRoutes(app) {
             }
             if ((filteredUser.privacy.review === 1 && isFollowing) || filteredUser.privacy.review === 0) {
                 filteredUser.reviews = userReviews.map(r => ({
+                    _id: r._id,
                     content: r.content,
-                    movie_id: r.movie_id
+                    movie_id: r.movie_id,
+                    update_time: r.update_time
                 }));
             }
             filteredUser.followers = followerList;

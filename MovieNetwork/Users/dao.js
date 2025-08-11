@@ -51,5 +51,5 @@ export const findLikedMovies = (userID) => {
 };
 
 export const findUserReviews = (userID) => {
-    return reviewModel.find({ user_id: userID }).select("content movie_id");
+    return reviewModel.find({ user_id: userID });
 };
