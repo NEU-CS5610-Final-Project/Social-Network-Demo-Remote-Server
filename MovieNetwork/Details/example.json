@@ -1,0 +1,53 @@
+{
+    "adult": false,
+    "backdrop_path": "/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+    "genre_ids": [12, 18, 878],
+    "id": 157336,
+    "original_language": "en",
+    "original_title": "Interstellar",
+    "overview": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "popularity": 92.5,
+    "poster_path": "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    "release_date": "2014-11-05",
+    "title": "Interstellar",
+    "video": false,
+    "vote_average": 8.6,
+    "vote_count": 33021,
+  
+    "local": {
+      "liked": false,
+      "rating": {
+        "avg": 9.0,
+        "count": 4
+      },
+      "reviews": [
+        {
+          "_id": "rev-1f2a",
+          "user_id": "user-a88c",
+          "movie_id": "157336",
+          "content": "Absolutely breathtaking visuals and storytelling.",
+          "createdAt": "2025-08-08T15:20:30.456Z",
+          "updatedAt": "2025-08-08T15:20:30.456Z",
+          "votes": 7
+        },
+        {
+          "_id": "rev-b923",
+          "user_id": "user-b92f",
+          "movie_id": "157336",
+          "content": "A little too long, but the ending was worth it.",
+          "createdAt": "2025-08-07T13:40:12.123Z",
+          "updatedAt": "2025-08-07T13:40:12.123Z",
+          "votes": 3
+        },
+        {
+          "_id": "rev-cff1",
+          "user_id": "user-c001",
+          "movie_id": "157336",
+          "content": "Hans Zimmer's soundtrack is a masterpiece in itself.",
+          "createdAt": "2025-08-06T10:10:00.000Z",
+          "updatedAt": "2025-08-06T10:10:00.000Z",
+          "votes": 5
+        }
+      ]
+    }
+  }
