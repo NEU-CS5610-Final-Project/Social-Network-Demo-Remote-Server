@@ -3,7 +3,7 @@ import reviewVoteModel from "../ReviewVote/model.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const createReview = async (reviewData) => {
-    const newReview = { ...reviewData, _id: uuidv4() };
+    const newReview = { ...reviewData, _id: uuidv4(), update_time: new Date() };
     await model.create(newReview);
     const newReviewVote = { _id: uuidv4(), review_id: newReview._id, count: 0 };
     await reviewVoteModel.create(newReviewVote);

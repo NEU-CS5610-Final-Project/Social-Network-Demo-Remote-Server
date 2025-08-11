@@ -67,22 +67,24 @@ export default function UserRoutes(app) {
             .find({ followed_id: uid })
             .populate({
                 path: 'follower_id',
-                select: '_id avatar'
+                select: '_id username avatar'
             })
             .lean();
         const following = await followModel
             .find({ follower_id: uid })
             .populate({
                 path: 'followed_id',
-                select: '_id avatar'
+                select: '_id username avatar'
             })
             .lean();
         const followerList = followers.map(f => ({
             _id: f.follower_id._id,
+            username: f.follower_id.username,
             avatar: f.follower_id.avatar
         }));
         const followingList = following.map(f => ({
             _id: f.followed_id._id,
+            username: f.followed_id.username,
             avatar: f.followed_id.avatar
         }));
         if (isSelf) {
