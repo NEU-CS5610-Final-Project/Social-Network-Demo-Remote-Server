@@ -30,4 +30,7 @@ async function testDetails() {
   }
 }
 
+
+// this is the expected output of the Details page, you can test it with the testDetails.js file
+// run the server and in the terminal, run: node testDetails.js to see the output
 testDetails();
