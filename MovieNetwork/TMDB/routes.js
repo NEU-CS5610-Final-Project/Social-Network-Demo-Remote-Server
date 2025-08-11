@@ -21,6 +21,36 @@ function sendErr(res, e, fallback = "Upstream TMDB error") {
 }
 
 export default function TMDBRoutes(app) {
+
+  // get the latest movies
+  app.get("/api/tmdb/latest", async (req, res) => {
+    try {
+      const { page = 1, lang = "en-US" } = req.query;
+      const { data } = await tmdb.get("/discover/movie", {
+        params: {
+          language: lang,
+          sort_by: "release_date.desc",
+          page
+        }
+      });
+      const results = data.results.map(movie => ({
+        adult: movie.adult,
+        vote_average: movie.vote_average,
+        vote_count: movie.vote_count,
+        overview: movie.overview,
+        id: movie.id,
+        original_language: movie.original_language,
+        poster_path: movie.poster_path,
+        release_date: movie.release_date,
+        title: movie.title
+      }));
+  
+      res.json({ page: data.page, total_pages: data.total_pages, results });
+    } catch (e) {
+      sendErr(res, e, "TMDB latest movies failed");
+    }
+  });
+
   /** Search for movies:
    * GET /api/tmdb/search?q=Inception&lang=en-US&page=1&region=CA&year=2010
    * For example, GET /api/tmdb/search?q=Inception&lang=en-US&page=1&region=CA&year=2010 will return the search results for the movie "Inception"
@@ -80,7 +110,7 @@ export default function TMDBRoutes(app) {
    * GET /api/tmdb/poster?id=27205&size=w500&lang=en-US
    * GET /api/tmdb/poster?title=Inception&year=2010&size=w500&lang=en-US
    * Can add redirect=1 to redirect to the image
-   * For example, GET /api/tmdb/poster?id=27205&size=w500&lang=en-US&redirect=1 will redirect to the imageen
+   * For example, GET /api/tmdb/poster?id=27205&size=w500&lang=en-US&redirect=1 will redirect to the image
    * For testing, you can use the following URL: http://localhost:4000/api/tmdb/poster?id=27205&size=w500&lang=en-US&redirect=1
    */
   app.get("/api/tmdb/poster", async (req, res) => {
