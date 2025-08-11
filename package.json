@@ -1,10 +1,12 @@
 {
   "name": "social-network-demo-remote-server",
+  "type": "module",
   "version": "1.0.0",
   "description": "The remote server node project for social network demo.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "mongoose": "^8.17.1",
     "uuid": "^11.1.0"
   }
 }
