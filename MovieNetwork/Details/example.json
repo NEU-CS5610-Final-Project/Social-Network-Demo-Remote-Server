@@ -1,0 +1,53 @@
+{    
+    "adult": false, 
+    "vote_average": 8.369, 
+    "vote_count": 37767, 
+    "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
+    "id": 27205, 
+    "original_language": "en", 
+    "poster_path": "/1jszTbVsrQSqZgWeep2B1QiDKuh.jpg", 
+    "release_date": "2010-07-15", 
+    "title": "Inception", 
+    "genres": [
+        { "id": 28, "name": "Action" },
+        { "id": 878, "name": "Science Fiction" },
+        { "id": 12, "name": "Adventure" }
+    ],
+  
+    "local": {
+      "liked": false,
+      "rating": {
+        "avg": 9.0,
+        "count": 4
+      },
+      "reviews": [
+        {
+          "_id": "rev-1f2a",
+          "user_id": "user-a88c",
+          "movie_id": "157336",
+          "content": "Absolutely breathtaking visuals and storytelling.",
+          "createdAt": "2025-08-08T15:20:30.456Z",
+          "updatedAt": "2025-08-08T15:20:30.456Z",
+          "votes": 7
+        },
+        {
+          "_id": "rev-b923",
+          "user_id": "user-b92f",
+          "movie_id": "157336",
+          "content": "A little too long, but the ending was worth it.",
+          "createdAt": "2025-08-07T13:40:12.123Z",
+          "updatedAt": "2025-08-07T13:40:12.123Z",
+          "votes": 3
+        },
+        {
+          "_id": "rev-cff1",
+          "user_id": "user-c001",
+          "movie_id": "157336",
+          "content": "Hans Zimmer's soundtrack is a masterpiece in itself.",
+          "createdAt": "2025-08-06T10:10:00.000Z",
+          "updatedAt": "2025-08-06T10:10:00.000Z",
+          "votes": 5
+        }
+      ]
+    }
+  }
