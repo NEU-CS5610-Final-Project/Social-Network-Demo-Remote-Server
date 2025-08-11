@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/NEU-CS5610-Final-Project/Social-Network-Demo-Remote-Server#readme",
   "dependencies": {
+    "axios": "^1.11.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
