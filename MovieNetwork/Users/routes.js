@@ -67,22 +67,24 @@ export default function UserRoutes(app) {
             .find({ followed_id: uid })
             .populate({
                 path: 'follower_id',
-                select: '_id avatar'
+                select: '_id username avatar'
             })
             .lean();
         const following = await followModel
             .find({ follower_id: uid })
             .populate({
                 path: 'followed_id',
-                select: '_id avatar'
+                select: '_id username avatar'
             })
             .lean();
         const followerList = followers.map(f => ({
             _id: f.follower_id._id,
+            username: f.follower_id.username,
             avatar: f.follower_id.avatar
         }));
         const followingList = following.map(f => ({
             _id: f.followed_id._id,
+            username: f.followed_id.username,
             avatar: f.followed_id.avatar
         }));
         if (isSelf) {
@@ -92,8 +94,10 @@ export default function UserRoutes(app) {
             fullUser.following = followingList;
             fullUser.liked = likedMovies.map(l => l.movie_id);
             fullUser.reviews = userReviews.map(r => ({
+                _id: r._id,
                 content: r.content,
-                movie_id: r.movie_id
+                movie_id: r.movie_id,
+                update_time: r.update_time
             }));
             res.json(fullUser);
         } else {
@@ -117,8 +121,10 @@ export default function UserRoutes(app) {
             }
             if ((filteredUser.privacy.review === 1 && isFollowing) || filteredUser.privacy.review === 0) {
                 filteredUser.reviews = userReviews.map(r => ({
+                    _id: r._id,
                     content: r.content,
-                    movie_id: r.movie_id
+                    movie_id: r.movie_id,
+                    update_time: r.update_time
                 }));
             }
             filteredUser.followers = followerList;
@@ -198,4 +204,20 @@ export default function UserRoutes(app) {
         res.json(userReviews);
     };
     app.get("/api/users/:uid/reviews", getUserReviews);
+
+    //Get Movie Votes
+    const getMovieVotes = async (req, res) => {
+        const { uid } = req.params;
+        const VotedMovies = await dao.getVotedMovies(uid);
+        res.json(VotedMovies);
+    };
+    app.get("/api/users/:uid/votedMovies", getMovieVotes);
+
+    //Get Voted Reviews
+    const getVotedReviews = async (req, res) => {
+        const { uid } = req.params;
+        const votedReviews = await dao.getVotedReviews(uid);
+        res.json(votedReviews);
+    };
+    app.get("/api/users/:uid/votedReviews", getVotedReviews);
 };

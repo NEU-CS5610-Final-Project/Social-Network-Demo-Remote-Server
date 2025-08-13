@@ -5,6 +5,7 @@ const reviewSchema = new mongoose.Schema({
     user_id: { type: String, ref: "UserModel" },
     movie_id: String,
     content: { type: String, required: true },
+    update_time: Date
 },
     { collection: "reviews" }
 );

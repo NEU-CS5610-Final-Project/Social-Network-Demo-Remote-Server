@@ -51,5 +51,23 @@ export const findLikedMovies = (userID) => {
 };
 
 export const findUserReviews = (userID) => {
-    return reviewModel.find({ user_id: userID }).select("content movie_id");
+    return reviewModel.find({ user_id: userID });
+};
+
+export const getVotedMovies = async (userID) => {
+    const userVote = await model.findById(userID).select("voted_movie");
+    if (!userVote) return null;
+    return {
+        _id: userVote._id,
+        voted_movie: userVote.voted_movie || []
+    };
+};
+
+export const getVotedReviews = async (userID) => {
+    const userVote = await model.findById(userID).select("voted_review");
+    if (!userVote) return null;
+    return {
+        _id: userVote._id,
+        voted_review: userVote.voted_review || []
+    };
 };

@@ -15,7 +15,17 @@ const userSchema = new mongoose.Schema({
         liked: Number,
         following: Number,
         review: Number
-    }
+    },
+    voted_movie: [
+        {
+            movie_id: { type: String, required: true }
+        }
+    ],
+    voted_review: [
+        {
+            review_id: { type: String, required: true }
+        }
+    ]
 },
     { collection: 'users' }
 );

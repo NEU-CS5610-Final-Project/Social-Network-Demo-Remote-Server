@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const movieVoteSchema = new mongoose.Schema({
     _id: { type: String, required: true },
     movie_id: { type: String, required: true },
-    rating: { type: Number, required: true }
+    rating: { type: Number, required: true },
+    user_id: String
 },
     { collection: "movieVotes" }
 );
