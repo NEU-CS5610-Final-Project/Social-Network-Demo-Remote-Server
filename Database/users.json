@@ -15,7 +15,17 @@
             "liked": 1,
             "following": 1,
             "review": 1
-        }
+        },
+        "voted_movie": [
+            {
+                "movie_id": 552524
+            }
+        ],
+        "voted_review": [
+            {
+                "review_id": "1"
+            }
+        ]
     },
     {
         "_id": "2",
@@ -33,7 +43,13 @@
             "liked": 0,
             "following": 0,
             "review": 0
-        }
+        },
+        "voted_movie": [
+            {
+                "movie_id": 552524
+            }
+        ],
+        "voted_review": []
     },
     {
         "_id": "3",
@@ -51,6 +67,8 @@
             "liked": 2,
             "following": 2,
             "review": 2
-        }
+        },
+        "voted_movie": [],
+        "voted_review": []
     }
 ]

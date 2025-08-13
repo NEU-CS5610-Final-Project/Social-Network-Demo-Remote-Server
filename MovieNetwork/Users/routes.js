@@ -204,4 +204,20 @@ export default function UserRoutes(app) {
         res.json(userReviews);
     };
     app.get("/api/users/:uid/reviews", getUserReviews);
+
+    //Get Movie Votes
+    const getMovieVotes = async (req, res) => {
+        const { uid } = req.params;
+        const VotedMovies = await dao.getVotedMovies(uid);
+        res.json(VotedMovies);
+    };
+    app.get("/api/users/:uid/votedMovies", getMovieVotes);
+
+    //Get Voted Reviews
+    const getVotedReviews = async (req, res) => {
+        const { uid } = req.params;
+        const votedReviews = await dao.getVotedReviews(uid);
+        res.json(votedReviews);
+    };
+    app.get("/api/users/:uid/votedReviews", getVotedReviews);
 };
