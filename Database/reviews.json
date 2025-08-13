@@ -2,19 +2,37 @@
     {
         "_id": "1",
         "user_id": "1",
-        "movie_id": "552524",
-        "content": "Great movie!",
+        "movie_id": "27205",
+        "content": "Amazing action sequences! The special effects are mind-blowing and the story keeps you on the edge of your seat. Definitely worth watching!",
         "update_time": {
-            "$date": "2025-08-11T21:35:22.123Z"
+            "$date": "2024-12-15T18:30:22.123Z"
         }
     },
     {
         "_id": "2",
         "user_id": "2",
-        "movie_id": "552524",
-        "content": "Not bad.",
+        "movie_id": "157336",
+        "content": "From a critical perspective, the film shows strong technical execution. The cinematography is excellent, though the plot could be more nuanced. Solid 7/10.",
         "update_time": {
-            "$date": "2025-08-11T21:35:22.123Z"
+            "$date": "2024-12-18T14:15:33.456Z"
+        }
+    },
+    {
+        "_id": "3",
+        "user_id": "3",
+        "movie_id": "157336",
+        "content": "As a film student, I'm impressed by the director's use of lighting and camera angles. The narrative structure follows classic three-act format effectively.",
+        "update_time": {
+            "$date": "2025-01-25T16:45:12.789Z"
+        }
+    },
+    {
+        "_id": "4",
+        "user_id": "1",
+        "movie_id": "157336",
+        "content": "Great character development and emotional depth. The performances are outstanding!",
+        "update_time": {
+            "$date": "2025-01-28T20:10:45.321Z"
         }
     }
 ]

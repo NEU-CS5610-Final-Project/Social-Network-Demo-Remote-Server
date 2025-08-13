@@ -1,11 +1,11 @@
 [
     {
         "_id": "1",
-        "username": "test",
-        "email": "test@example.com",
-        "password": "123",
-        "bio": "This is a test user.",
-        "join_date": "2025-08-01",
+        "username": "alice_movie",
+        "email": "alice@example.com",
+        "password": "password123",
+        "bio": "Movie enthusiast who loves action and sci-fi films. Always looking for the next great story!",
+        "join_date": "2024-11-15",
         "avatar": "default",
         "role": "USER",
         "privacy": {
@@ -14,11 +14,45 @@
             "join_date": 0,
             "liked": 1,
             "following": 1,
-            "review": 1
+            "review": 0
         },
         "voted_movie": [
             {
-                "movie_id": 552524
+                "movie_id": 27205
+            },
+            {
+                "movie_id": 157336
+            }
+        ],
+        "voted_review": [
+            {
+                "review_id": "1"
+            },
+            {
+                "review_id": "2"
+            }
+        ]
+    },
+    {
+        "_id": "2",
+        "username": "bob_critic",
+        "email": "bob@example.com",
+        "password": "critic2025",
+        "bio": "Professional film critic with 8 years of experience. Passionate about independent cinema.",
+        "join_date": "2024-10-20",
+        "avatar": "default",
+        "role": "USER",
+        "privacy": {
+            "email": 2,
+            "bio": 0,
+            "join_date": 0,
+            "liked": 0,
+            "following": 0,
+            "review": 0
+        },
+        "voted_movie": [
+            {
+                "movie_id": 157336
             }
         ],
         "voted_review": [
@@ -28,12 +62,12 @@
         ]
     },
     {
-        "_id": "2",
-        "username": "test2",
-        "email": "test2@example.com",
-        "password": "123",
-        "bio": "This is a test2 user.",
-        "join_date": "2025-08-03",
+        "_id": "3",
+        "username": "charlie_student",
+        "email": "charlie@film.edu",
+        "password": "student123",
+        "bio": "Film student at NYU. Learning the art of storytelling and cinematography.",
+        "join_date": "2025-01-10",
         "avatar": "default",
         "role": "USER",
         "privacy": {
@@ -46,18 +80,18 @@
         },
         "voted_movie": [
             {
-                "movie_id": 552524
+                "movie_id": 157336
             }
         ],
         "voted_review": []
     },
     {
-        "_id": "3",
+        "_id": "4",
         "username": "admin",
-        "email": "admin@example.com",
-        "password": "admin",
-        "bio": "This is an admin user.",
-        "join_date": "2025-08-01",
+        "email": "admin@movienetwork.com",
+        "password": "admin123",
+        "bio": "System administrator for MovieNetwork platform.",
+        "join_date": "2024-09-01",
         "avatar": "default",
         "role": "ADMIN",
         "privacy": {
