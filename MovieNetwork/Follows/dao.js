@@ -13,3 +13,11 @@ export const followUser = (userID, currentUserID) => {
 export const unfollowUser = (userID, currentUserID) => {
     return model.deleteOne({ follower_id: currentUserID, followed_id: userID });
 };
+
+// Get all user IDs that the current user follows
+export const findFollowedIds = async (followerId) => {
+    const rows = await model.find({ follower_id: followerId })
+      .select("followed_id")
+      .lean();
+    return rows.map(r => String(r.followed_id));
+  };

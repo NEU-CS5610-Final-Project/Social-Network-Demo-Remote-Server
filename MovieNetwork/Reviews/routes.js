@@ -29,4 +29,5 @@ export default function ReviewRoutes(app) {
         const reviews = await dao.findReviewsByMovie(movieId);
         res.json(reviews);
     });
+
 };

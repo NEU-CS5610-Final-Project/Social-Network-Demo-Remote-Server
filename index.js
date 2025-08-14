@@ -14,6 +14,7 @@ import ReviewVoteRoutes from "./MovieNetwork/ReviewVote/routes.js";
 import TMDBRoutes from "./MovieNetwork/TMDB/routes.js";
 // Details routes
 import DetailsRoutes from "./MovieNetwork/Details/routes.js";
+import FollowedReviewsRoutes from "./MovieNetwork/FollowedReviews/routes.js";
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/movie-network";
 mongoose.connect(CONNECTION_STRING);
@@ -44,6 +45,7 @@ LikedRoutes(app);
 ReviewRoutes(app);
 MovieVoteRoutes(app);
 ReviewVoteRoutes(app);
+FollowedReviewsRoutes(app);
 TMDBRoutes(app);
 DetailsRoutes(app);
 
