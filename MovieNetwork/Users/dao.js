@@ -71,3 +71,7 @@ export const getVotedReviews = async (userID) => {
         voted_review: userVote.voted_review || []
     };
 };
+
+export const fetchUsersByName = (name) => {
+    return model.find({ username: { $regex: name, $options: "i" } }).select("username _id join_date role avatar");
+};

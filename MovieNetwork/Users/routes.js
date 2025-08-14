@@ -58,8 +58,10 @@ export default function UserRoutes(app) {
         }
         let isSelf = false;
         let isFollowing = false;
+        let isAdmin = false;
         if (currentUser) {
             isSelf = currentUser._id === user._id;
+            isAdmin = currentUser.role === "ADMIN";
         }
         const likedMovies = await dao.findLikedMovies(uid);
         const userReviews = await dao.findUserReviews(uid);
@@ -113,13 +115,13 @@ export default function UserRoutes(app) {
                     delete filteredUser[key];
                 }
             }
-            if ((filteredUser.privacy.following === 1 && isFollowing) || filteredUser.privacy.following === 0) {
+            if ((filteredUser.privacy.following === 1 && isFollowing) || filteredUser.privacy.following === 0 || isAdmin) {
                 filteredUser.following = followingList;
             }
-            if ((filteredUser.privacy.liked === 1 && isFollowing) || filteredUser.privacy.following === 0) {
+            if ((filteredUser.privacy.liked === 1 && isFollowing) || filteredUser.privacy.following === 0 || isAdmin) {
                 filteredUser.liked = likedMovies.map(l => l.movie_id);
             }
-            if ((filteredUser.privacy.review === 1 && isFollowing) || filteredUser.privacy.review === 0) {
+            if ((filteredUser.privacy.review === 1 && isFollowing) || filteredUser.privacy.review === 0 || isAdmin) {
                 filteredUser.reviews = userReviews.map(r => ({
                     _id: r._id,
                     content: r.content,
@@ -220,4 +222,16 @@ export default function UserRoutes(app) {
         res.json(votedReviews);
     };
     app.get("/api/users/:uid/votedReviews", getVotedReviews);
+
+    // Search Users
+    const searchUsers = async (req, res) => {
+        const currentUser = req.session["currentUser"];
+        const { name } = req.query;
+        const users = await dao.fetchUsersByName(name);
+        if (!currentUser || currentUser.role !== "ADMIN") {
+            users.forEach(user => delete user.join_date);
+        }
+        res.json(users);
+    };
+    app.get("/api/users/search", searchUsers);
 };
