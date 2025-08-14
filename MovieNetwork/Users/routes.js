@@ -111,7 +111,7 @@ export default function UserRoutes(app) {
                 });
             }
             for (const [key, privacySetting] of Object.entries(filteredUser.privacy || {})) {
-                if ((privacySetting === 1 && !isFollowing) || privacySetting === 2) {
+                if (((privacySetting === 1 && !isFollowing) || privacySetting === 2) && !isAdmin) {
                     delete filteredUser[key];
                 }
             }
