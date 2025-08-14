@@ -81,3 +81,8 @@ export const findBasicByIdsAsMap = async (userIds = []) => {
       .lean();
     return new Map(users.map(u => [String(u._id), u]));
   };
+
+export const fetchUsersByName = (name) => {
+    return model.find({ username: { $regex: name, $options: "i" } }).select("username _id join_date role avatar");
+};
+
