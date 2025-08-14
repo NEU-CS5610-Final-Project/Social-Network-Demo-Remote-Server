@@ -16,7 +16,8 @@ export const deleteReview = async (reviewID) => {
 };
 
 export const updateReview = (reviewID, reviewData) => {
-    return model.updateOne({ _id: reviewID }, { $set: reviewData });
+    const updatedReview = { ...reviewData, update_time: new Date() };
+    return model.updateOne({ _id: reviewID }, { $set: updatedReview });
 };
 
 export const findReviewsByMovie = (movieID) => {
@@ -25,10 +26,10 @@ export const findReviewsByMovie = (movieID) => {
 
 // Get reviews by user IDs
 export const findRecentByUsers = (userIds = [], limit = 5) => {
-  if (!Array.isArray(userIds) || userIds.length === 0) return Promise.resolve([]);
-  return model
-    .find({ user_id: { $in: userIds } })
-    .sort({ update_time: -1 })
-    .limit(Math.max(1, Math.min(limit, 20)))
-    .lean();
+    if (!Array.isArray(userIds) || userIds.length === 0) return Promise.resolve([]);
+    return model
+        .find({ user_id: { $in: userIds } })
+        .sort({ update_time: -1 })
+        .limit(Math.max(1, Math.min(limit, 20)))
+        .lean();
 };
