@@ -228,10 +228,19 @@ export default function UserRoutes(app) {
         const currentUser = req.session["currentUser"];
         const { name } = req.query;
         const users = await dao.fetchUsersByName(name);
+
         if (!currentUser || currentUser.role !== "ADMIN") {
-            users.forEach(user => delete user.join_date);
+            // convert to plain object and remove properties
+            const filteredUsers = users.map(user => {
+                const userObj = user.toObject();
+                delete userObj.join_date;
+                delete userObj.role;
+                return userObj;
+            });
+            res.json(filteredUsers);
+        } else {
+            res.json(users);
         }
-        res.json(users);
     };
     app.get("/api/users/search", searchUsers);
 };
