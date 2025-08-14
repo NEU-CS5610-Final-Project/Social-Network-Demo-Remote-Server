@@ -26,4 +26,17 @@ export default function FollowRoutes(app) {
         res.sendStatus(200);
     };
     app.delete("/api/follow/:uid", unfollowUser);
+
+    // Delete a follower
+    const deleteFollower = async (req, res) => {
+        const { uid } = req.params;
+        const currentUser = req.session["currentUser"];
+        if (!currentUser) {
+            res.sendStatus(401);
+            return;
+        }
+        await dao.deleteFollower(uid, currentUser._id);
+        res.sendStatus(200);
+    };
+    app.delete("/api/follow/:uid/follower", deleteFollower);
 }

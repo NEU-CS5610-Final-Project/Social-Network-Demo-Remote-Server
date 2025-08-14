@@ -20,7 +20,7 @@ export default function UserRoutes(app) {
     //Sign Up
     const signUp = async (req, res) => {
         const user = await dao.findUserByUsername(req.body.username);
-        if (user) {
+        if (user || req.body.username.toLowerCase() === "unknown user") {
             res.status(400).json(
                 { message: "Username already in use" });
             return;
@@ -65,12 +65,36 @@ export default function UserRoutes(app) {
         }
         const likedMovies = await dao.findLikedMovies(uid);
         const userReviews = await dao.findUserReviews(uid);
+
+        const rawFollowers = await followModel
+            .find({ followed_id: uid })
+            .lean();
         const followers = await followModel
             .find({ followed_id: uid })
             .populate({
                 path: 'follower_id',
                 select: '_id username avatar'
             })
+            .lean()
+            .transform((docs) => {
+                return docs.map(follow => {
+                    const rawFollow = rawFollowers.find(raw => raw._id === follow._id);
+                    const originalFollowerId = rawFollow?.follower_id;
+
+                    if (!follow.follower_id) {
+                        follow.follower_id = {
+                            _id: null,
+                            username: 'Unknown User',
+                            avatar: 'default',
+                            original_follower_id: originalFollowerId
+                        };
+                    }
+                    return follow;
+                });
+            });
+
+        const rawFollowing = await followModel
+            .find({ follower_id: uid })
             .lean();
         const following = await followModel
             .find({ follower_id: uid })
@@ -78,16 +102,35 @@ export default function UserRoutes(app) {
                 path: 'followed_id',
                 select: '_id username avatar'
             })
-            .lean();
+            .lean()
+            .transform((docs) => {
+                return docs.map(follow => {
+                    const rawFollow = rawFollowing.find(raw => raw._id === follow._id);
+                    const originalFollowedId = rawFollow?.followed_id;
+
+                    if (!follow.followed_id) {
+                        follow.followed_id = {
+                            _id: null,
+                            username: 'Unknown User',
+                            avatar: 'default',
+                            original_followed_id: originalFollowedId
+                        };
+                    }
+                    return follow;
+                });
+            });
+
         const followerList = followers.map(f => ({
-            _id: f.follower_id._id,
+            _id: f.follower_id?._id,
             username: f.follower_id.username,
-            avatar: f.follower_id.avatar
+            avatar: f.follower_id.avatar,
+            original_follower_id: f.follower_id?.original_follower_id
         }));
         const followingList = following.map(f => ({
-            _id: f.followed_id._id,
+            _id: f.followed_id?._id,
             username: f.followed_id.username,
-            avatar: f.followed_id.avatar
+            avatar: f.followed_id.avatar,
+            original_followed_id: f.followed_id?.original_followed_id
         }));
         if (isSelf) {
             const fullUser = { ...user._doc || user };
