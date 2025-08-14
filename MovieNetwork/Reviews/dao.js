@@ -22,3 +22,13 @@ export const updateReview = (reviewID, reviewData) => {
 export const findReviewsByMovie = (movieID) => {
     return model.find({ movie_id: movieID });
 };
+
+// Get reviews by user IDs
+export const findRecentByUsers = (userIds = [], limit = 5) => {
+  if (!Array.isArray(userIds) || userIds.length === 0) return Promise.resolve([]);
+  return model
+    .find({ user_id: { $in: userIds } })
+    .sort({ update_time: -1 })
+    .limit(Math.max(1, Math.min(limit, 20)))
+    .lean();
+};

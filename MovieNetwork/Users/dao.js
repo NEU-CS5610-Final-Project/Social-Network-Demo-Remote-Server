@@ -72,6 +72,17 @@ export const getVotedReviews = async (userID) => {
     };
 };
 
+// Get basic user information by user IDs
+export const findBasicByIdsAsMap = async (userIds = []) => {
+    if (!userIds.length) return new Map();
+    const users = await model
+      .find({ _id: { $in: userIds } })
+      .select("_id username avatar")
+      .lean();
+    return new Map(users.map(u => [String(u._id), u]));
+  };
+
 export const fetchUsersByName = (name) => {
     return model.find({ username: { $regex: name, $options: "i" } }).select("username _id join_date role avatar");
 };
+
