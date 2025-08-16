@@ -97,3 +97,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Visit our front-end repository
 Check out the front-end part of this project at [Social-Network-Demo-Project](https://github.com/NEU-CS5610-Final-Project/Social-Network-Demo-Project).
+
+## For more information about this backend application, see [our wiki page](https://github.com/NEU-CS5610-Final-Project/Social-Network-Demo-Remote-Server/wiki).
